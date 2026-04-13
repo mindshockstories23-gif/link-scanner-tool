@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SecureCheck - Link Safety Scanner</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+        }
+
+        header {
+            background: #020617;
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #1e293b;
+        }
+
+        header h2 {
+            color: #22c55e;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 30px 15px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        p.subtitle {
+            color: #94a3b8;
+        }
+
+        .tool-box {
+            background: #1e293b;
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+
+        input {
+            width: 60%;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+        }
+
+        button {
+            padding: 12px 18px;
+            border-radius: 8px;
+            border: none;
+            background: #22c55e;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #16a34a;
+        }
+
+        /* Loading animation */
+        .progress {
+            margin-top: 20px;
+            height: 8px;
+            background: #334155;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 8px;
+            width: 0%;
+            background: lime;
+            transition: width 2s ease;
+        }
+
+        .result {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 12px;
+            background: #020617;
+            text-align: left;
+        }
+
+        .result h2 {
+            text-align: center;
+        }
+
+        .status-safe { color: #22c55e; }
+        .status-warning { color: #f59e0b; }
+        .status-danger { color: #ef4444; }
+
+        footer {
+            margin-top: 50px;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #1e293b;
+            color: #94a3b8;
+        }
+
+        /* Mobile */
+        @media(max-width:600px){
+            input {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h2>🔐 SecureCheck</h2>
+    <span>Cyber Security Tool</span>
+</header>
+
+<div class="container">
+
+    <h1>Check if a Link is Safe</h1>
+    <p class="subtitle">Scan URLs using 70+ security engines</p>
+
+    <div class="tool-box">
+        <form method="POST" onsubmit="startScan()">
+            <input type="text" name="url" placeholder="Enter URL (https://example.com)" required>
+            <button type="submit">Scan</button>
+        </form>
+
+        <!-- Loading bar -->
+        <div class="progress">
+            <div id="bar" class="progress-bar"></div>
+        </div>
+    </div>
+
+    {% if status %}
+    <div class="result">
+
+        <h2 class="
+            {% if 'SAFE' in status %}status-safe
+            {% elif 'SUSPICIOUS' in status %}status-warning
+            {% else %}status-danger
+            {% endif %}
+        ">
+            {{ status }}
+        </h2>
+
+        <p><b>🔗 URL:</b> {{ url }}</p>
+
+        <hr>
+
+        <p>📊 Risk Score: {{ score }}/100</p>
+        <p>🔴 Malicious Engines: {{ malicious }}</p>
+        <p>🟢 Safe Engines: {{ harmless }}</p>
+        <p>🔍 Scanned by 70+ security engines</p>
+
+        <!-- Score bar -->
+        <div class="progress">
+            <div style="width: {{ score }}%; background:
+                {% if score < 30 %}green
+                {% elif score < 60 %}orange
+                {% else %}red
+                {% endif %}
+            ; height:8px;"></div>
+        </div>
+
+    </div>
+    {% endif %}
+
+</div>
+
+<!-- AdSense Space -->
+<div style="text-align:center; margin: 20px;">
+    <p>Ad Space (Google AdSense)</p>
+</div>
+
+<footer>
+    <p>© 2026 SecureCheck | Stay Safe Online</p>
+</footer>
+
+<script>
+function startScan(){
+    let bar = document.getElementById("bar");
+    bar.style.width = "100%";
+}
+</script>
+
+</body>
+</html>
