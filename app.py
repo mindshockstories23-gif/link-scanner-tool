@@ -5,8 +5,8 @@ import time
 app = Flask(__name__)
 
 # 🔴 Your VirusTotal API Key
-VT_API_KEY = "369a2aecc7cc2316dba58bd1d93e7fc167317a0853082dbd35b85e57a873451f"
-
+import os
+VT_API_KEY = os.environ.get("API_KEY")
 
 def check_virustotal(url):
     headers = {"x-apikey": VT_API_KEY}
