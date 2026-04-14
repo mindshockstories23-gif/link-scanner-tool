@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 # 🔴 Your VirusTotal API Key
 import os
-VT_API_KEY = os.environ.get("API_KEY")
+API_KEY = os.environ.get("API_KEY")
 
 def check_virustotal(url):
     headers = {"x-apikey": VT_API_KEY}
