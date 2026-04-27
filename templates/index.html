@@ -72,7 +72,24 @@
             background: #16a34a;
         }
 
-        /* Loading animation */
+        /* 🔥 CTA BUTTON STYLE */
+        .cta-btn {
+            margin-top: 20px;
+            background-color:#ff5722;
+            color:white;
+            padding:14px 24px;
+            text-decoration:none;
+            border-radius:8px;
+            display:inline-block;
+            font-size:18px;
+            font-weight:bold;
+            box-shadow:0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .cta-btn:hover {
+            background-color:#e64a19;
+        }
+
         .progress {
             margin-top: 20px;
             height: 8px;
@@ -112,14 +129,12 @@
             color: #94a3b8;
         }
 
-        /* Mobile */
         @media(max-width:600px){
             input {
                 width: 100%;
                 margin-bottom: 10px;
             }
         }
-
     </style>
 </head>
 
@@ -141,11 +156,19 @@
             <button type="submit">Scan</button>
         </form>
 
-        <!-- Loading bar -->
         <div class="progress">
             <div id="bar" class="progress-bar"></div>
         </div>
     </div>
+
+    <!-- 🔥 NEW CTA BUTTON -->
+    <a href="https://link-scanner-tool.onrender.com" target="_blank" rel="nofollow" class="cta-btn">
+        🚀 Scan Link Now (Free)
+    </a>
+
+    <p style="margin-top:10px; font-size:13px; color:gray;">
+        ⚠️ If redirect page appears, click “Proceed” — it's a normal security check.
+    </p>
 
     {% if status %}
     <div class="result">
@@ -168,7 +191,6 @@
         <p>🟢 Safe Engines: {{ harmless }}</p>
         <p>🔍 Scanned by 70+ security engines</p>
 
-        <!-- Score bar -->
         <div class="progress">
             <div style="width: {{ score }}%; background:
                 {% if score < 30 %}green
@@ -183,7 +205,6 @@
 
 </div>
 
-<!-- AdSense Space -->
 <div style="text-align:center; margin: 20px;">
     <p>Ad Space (Google AdSense)</p>
 </div>
