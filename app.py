@@ -92,13 +92,12 @@ def index():
         malicious=0,
         harmless=0
     )
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
-
 @app.after_request
 def add_header(response):
     response.headers['X-Frame-Options'] = 'ALLOWALL'
     response.headers['Content-Security-Policy'] = "frame-ancestors *"
     return response
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
